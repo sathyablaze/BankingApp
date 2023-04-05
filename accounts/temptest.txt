@@ -1,0 +1,25 @@
+apps.py:
+
+from accounts.models import Feedback
+
+class FeedbackConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'feedback'
+
+    def ready(self):
+        Feedback.create_table(wait=True)
+
+
+models.py:
+from pynamodb.models import Model
+from pynamodb.attributes import UnicodeAttribute, NumberAttribute ,UTCDateTimeAttribute
+
+class Feedback(Model):
+    class Meta:
+        table_name = 'feedback'
+
+    feedback_id = NumberAttribute(hash_key=True)
+    name = UnicodeAttribute()
+    email = UnicodeAttribute()
+    comment = UnicodeAttribute()
+    date_submitted = UTCDateTimeAttribute()

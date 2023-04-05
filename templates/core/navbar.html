@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <title>BCB</title>
+    </head>
+    <body>
+        <nav>
+            <div class="logo">
+                <h4>Blinders Continental Bank</h4> 
+            </div>
+            {% if request.user.is_authenticated %}
+                <ul class="nav-links">
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'accounts:user_logout' %}">Log out</a>
+                    </li>
+                    <li>
+                        <div class="form-box">
+                            <div class="container">
+                                <div class="select-box">
+                                  <div class="options-container">
+                                    <a href="{% url 'transactions:deposit_money' %}"><div class="option">
+                                      <input
+                                        type="radio"
+                                        class="radio"
+                                        id="automobiles"
+                                        name="category"
+                                      />
+                                      <label for="automobiles">Deposit</label>
+                                    </div></a>
+                          
+                                    <a href="{% url 'transactions:withdraw_money' %}"><div class="option">
+                                      <input type="radio" class="radio" id="film" name="category" />
+                                      <label for="film">Withdraw</label>
+                                    </div></a>
+                                    
+                                    <a href="{% url 'transactions:transaction_report' %}">
+                                        <div class="option">
+                                          <input type="radio" class="radio" id="film" name="category" />
+                                          <label for="film">Transactions</label>
+                                        </div>
+                                      </a>                                      
+
+                                      <a href="#"><div class="option">
+                                      <input type="radio" class="radio" id="art" name="category" />
+                                      <label for="art">Feedback</label>
+                                    </div></a>
+                          
+                                    <a href="#"><div class="option">
+                                      <input type="radio" class="radio" id="music" name="category" />
+                                      <label for="music">Docs</a></label>
+                                    </div></a>
+                                </div>
+                                
+                                <div class="selected">
+                                    Options
+                                  </div>
+                          
+                                  <div class="search-box">
+                                    <input type="text" placeholder="Start Typing..." />
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            {% else %}
+
+                <ul class="nav-links">
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'accounts:user_login' %}">Log in</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'accounts:user_registration' %}">Register</a>
+                    </li>
+                </ul>
+            {% endif %}
+
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </body>
+</html>

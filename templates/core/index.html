@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <title>BCB</title>
+    </head>
+    <body>
+        {% block body %}
+            {% include 'core/navbar.html' %}
+                {% include 'core/messages.html' %}
+                {% block content %}
+            <!-- Add content here -->
+                {% endblock %}
+
+        <div class="wallpaper">
+            <img src="{% static 'images/continental.jpg'%}">
+            <div class="toimg"><h2>Welcome to <br> BCB</h2></div>
+        </div>
+
+            {% include 'core/footer.html' %}
+
+        {% endblock %}
+        {% block footer_extra %}{% endblock %}
+
+        <script src="{% static 'js/burger.js' %}"></script>
+        <script src="{% static 'js/form.js' %}"></script>
+
+    </body>
+</html>
